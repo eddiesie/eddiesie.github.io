@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
-  // 讓頁面上的每一個 rail-wrap 都有自己的左右鍵與拖曳捲動
+  // 讓頁面上每一個 .rail-wrap 都有自己的左右鍵與拖曳捲動
   document.querySelectorAll('.rail-wrap').forEach((wrap) => {
     const rail = wrap.querySelector('.rail');
     const prevBtn = wrap.querySelector('.rail-btn.prev');

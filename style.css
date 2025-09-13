@@ -1,12 +1,12 @@
 /* ===== 基本變數（亮色 Apple 風） ===== */
 :root{
-  --bg:#f5f5f7;         /* Apple 淺灰背景 */
+  --bg:#f5f5f7;
   --panel:#ffffff;
   --card:#ffffff;
   --line:#e5e5ea;
   --text:#111114;
   --muted:#6e6e73;
-  --brand:#007aff;      /* iOS 藍 */
+  --brand:#007aff;
   --brand-2:#4da3ff;
   --radius:18px;
   --shadow:0 20px 60px rgba(0,0,0,.12);
@@ -107,7 +107,10 @@ a{color:inherit}
 .card p{margin:0; color:rgba(255,255,255,.9)}
 .card:focus-visible{ outline:2px solid var(--brand); outline-offset:2px }
 
-/* ===== 作品/網通 水平滑動（滿版） ===== */
+/* ▼ 若希望網通區的縮圖維持「方形」，加這行（可拿掉就會和下方同 3/4 比例） */
+#network .rail .card img{ aspect-ratio: 1/1; }
+
+/* ===== 水平滑動（滿版；供網通/作品共用） ===== */
 .section.fullbleed .rail-wrap{
   position: relative;
   width: 100vw;
@@ -141,7 +144,7 @@ a{color:inherit}
 .rail-btn:hover{ background: rgba(255,255,255,.95); }
 .rail-btn.prev{ left: 8px; }
 .rail-btn.next{ right: 8px; }
-.rail-btn.is-hidden{ opacity:.0; pointer-events:none; }
+.rail-btn.is-hidden{ opacity:0; pointer-events:none; }
 
 .edge-fade{
   position:absolute; top:0; bottom:0; width:60px; z-index:4;
@@ -154,6 +157,28 @@ a{color:inherit}
   right:0; background: linear-gradient(270deg, var(--bg), rgba(245,245,247,0));
 }
 
+/* ===== 只調整「網路通訊能力」的卡片尺寸與間距 =====
+   - 更小的卡片：降低 grid-auto-columns
+   - 更大的卡片間距：提高 gap
+   - 增加左右內邊界：padding
+*/
+#network .rail{
+  grid-auto-columns: min(64vw, 420px);  /* ← 比全站預設更小 */
+  gap: 28px;                             /* ← 卡片之間間距更大 */
+  padding: 8px 24px;                     /* ← 左右內邊界，避免貼邊 */
+}
+
+/* RWD 微調（視窗變小時合理縮放） */
+@media (max-width: 1024px){
+  #network .rail{ grid-auto-columns: min(72vw, 420px); gap: 24px; padding: 8px 20px; }
+}
+@media (max-width: 820px){
+  #network .rail{ grid-auto-columns: 76vw; gap: 20px; padding: 8px 16px; }
+}
+@media (max-width: 560px){
+  #network .rail{ grid-auto-columns: 88vw; gap: 16px; padding: 8px 12px; }
+}
+
 /* 聯絡 & 頁尾 */
 .contact .muted a{color:var(--brand)}
 .site-footer{
@@ -161,9 +186,3 @@ a{color:inherit}
   background:#fff0;
 }
 .site-footer small{color:var(--muted)}
-
-/* RWD */
-@media (max-width: 820px){
-  .rail{ grid-auto-columns: 88vw; }
-  .headline{font-size:clamp(32px,8vw,56px)}
-}

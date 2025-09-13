@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- 極簡固定導覽 -->
+  <!-- 固定導覽 -->
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="#top">Eddie</a>
@@ -23,50 +23,55 @@
   <!-- Hero -->
   <section id="top" class="hero">
     <div class="container hero-inner">
-      <h1 class="headline">前端 . 遊戲 . 電繪</h1>
-      <p class="sub">一頁式作品展示。大留白、細膩動效、水平滑動。</p>
+      <h1 class="headline">前端．遊戲．電繪</h1>
+      <p class="sub">一頁式作品展示。大留白、細緻動效、水平滑動。</p>
       <a class="btn" href="#network">先看網路通訊能力</a>
     </div>
   </section>
 
-  <!-- ✅ 新增：網路通訊能力區（三張等寬卡片） -->
-  <section id="network" class="section">
+  <!-- ② 網路通訊能力（水平滑動模塊） -->
+  <section id="network" class="section fullbleed">
     <div class="container section-head">
       <h2>網路通訊能力</h2>
       <p class="muted">WebSocket / HTTP / HTML5</p>
     </div>
 
-    <div class="container cards-3">
-      <!-- WebSocket 聊天室 -->
-      <a class="card" href="https://eddiesie.github.io/websocket-chat/" target="_blank" rel="noopener">
-        <img src="images/webdsocket.png" alt="WebSocket 聊天室示意圖" loading="lazy" />
-        <figcaption>
-          <h3>WebSocket 聊天室</h3>
-          <p class="muted">即時訊息、房間廣播、斷線處理</p>
-        </figcaption>
-      </a>
+    <div class="rail-wrap">
+      <div class="edge-fade left" aria-hidden="true"></div>
+      <div class="edge-fade right" aria-hidden="true"></div>
 
-      <!-- 台灣天氣查詢（HTTP） -->
-      <a class="card" href="https://eddiesie.github.io/taiwan-weather-tool/" target="_blank" rel="noopener">
-        <img src="images/weather.png" alt="台灣天氣查詢頁面示意圖" loading="lazy" />
-        <figcaption>
-          <h3>台灣天氣查詢</h3>
-          <p class="muted">HTTP Fetch、錯誤處理、JSON 解析</p>
-        </figcaption>
-      </a>
+      <button class="rail-btn prev" aria-label="向左捲動">‹</button>
+      <button class="rail-btn next" aria-label="向右捲動">›</button>
 
-      <!-- 猜數字小遊戲（HTML5/DOM） -->
-      <a class="card" href="https://eddiesie.github.io/guess-number-game/" target="_blank" rel="noopener">
-        <img src="images/guessnumber.png" alt="猜數字小遊戲示意圖" loading="lazy" />
-        <figcaption>
-          <h3>猜數字小遊戲</h3>
-          <p class="muted">HTML5/DOM 互動、狀態管理</p>
-        </figcaption>
-      </a>
+      <div class="rail" tabindex="0" aria-label="網路通訊作品水平瀏覽">
+        <a class="card" href="https://eddiesie.github.io/websocket-chat/" target="_blank" rel="noopener">
+          <img src="images/webdsocket.png" alt="WebSocket 聊天室示意圖" loading="lazy" />
+          <figcaption>
+            <h3>WebSocket 聊天室</h3>
+            <p class="muted">即時訊息、房間廣播、斷線處理</p>
+          </figcaption>
+        </a>
+
+        <a class="card" href="https://eddiesie.github.io/taiwan-weather-tool/" target="_blank" rel="noopener">
+          <img src="images/weather.png" alt="台灣天氣查詢頁面示意圖" loading="lazy" />
+          <figcaption>
+            <h3>台灣天氣查詢</h3>
+            <p class="muted">HTTP Fetch、錯誤處理、JSON 解析</p>
+          </figcaption>
+        </a>
+
+        <a class="card" href="https://eddiesie.github.io/guess-number-game/" target="_blank" rel="noopener">
+          <img src="images/guessnumber.png" alt="猜數字小遊戲示意圖" loading="lazy" />
+          <figcaption>
+            <h3>猜數字小遊戲</h3>
+            <p class="muted">HTML5/DOM 互動、狀態管理</p>
+          </figcaption>
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- 作品模塊：滿版水平滑動（貼到視窗邊、不裁切） -->
+  <!-- ⑥ 作品一覽（水平滑動） -->
   <section id="gallery" class="section fullbleed">
     <div class="container section-head">
       <h2>作品一覽</h2>
@@ -74,24 +79,20 @@
     </div>
 
     <div class="rail-wrap">
-      <!-- 邊緣淡出（Apple 風） -->
       <div class="edge-fade left" aria-hidden="true"></div>
       <div class="edge-fade right" aria-hidden="true"></div>
 
-      <!-- 左右箭頭 -->
       <button class="rail-btn prev" aria-label="向左捲動">‹</button>
       <button class="rail-btn next" aria-label="向右捲動">›</button>
 
-      <!-- 橫向軌道（100vw 滿版） -->
       <div class="rail" id="rail" tabindex="0" aria-label="水平作品瀏覽">
-        <!-- 直接換成你的圖檔路徑即可 -->
         <figure class="card">
           <img src="images/001.PNG" alt="art 01" loading="lazy" />
           <figcaption><h3>插畫 01</h3><p class="muted">描述文字</p></figcaption>
         </figure>
         <figure class="card">
           <img src="images/002.PNG" alt="art 02" loading="lazy" />
-          <figcaption><h3>插畫 02</h3><p class="muted">描述文字</p></figcaption>
+        <figcaption><h3>插畫 02</h3><p class="muted">描述文字</p></figcaption>
         </figure>
         <figure class="card">
           <img src="images/003.PNG" alt="art 03" loading="lazy" />
@@ -105,7 +106,6 @@
           <img src="images/005.PNG" alt="art 05" loading="lazy" />
           <figcaption><h3>插畫 05</h3><p class="muted">描述文字</p></figcaption>
         </figure>
-        <!-- 需要更多就複製 card -->
       </div>
     </div>
   </section>
