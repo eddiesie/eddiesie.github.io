@@ -107,7 +107,7 @@ a{color:inherit}
 .card p{margin:0; color:rgba(255,255,255,.9)}
 .card:focus-visible{ outline:2px solid var(--brand); outline-offset:2px }
 
-/* ▼ 若希望網通區的縮圖維持「方形」 */
+/* ▼ 讓網通區縮圖維持「方形」 */
 #network .rail .card img{ aspect-ratio: 1/1; }
 
 /* ===== 水平滑動（滿版；供網通/作品共用） ===== */
@@ -157,35 +157,29 @@ a{color:inherit}
   right:0; background: linear-gradient(270deg, var(--bg), rgba(245,245,247,0));
 }
 
-/* ===== 只調整「網路通訊能力」的卡片尺寸與間距 ===== */
+/* ===== 僅調整「網路通訊能力」尺寸與陰影 ===== */
 #network .rail{
-  grid-auto-columns: min(64vw, 420px);  /* 卡片更小 */
-  gap: 28px;                             /* 卡片間距更大 */
-  padding: 8px 24px 18px;                /* 底部多 10px，讓陰影不貼底 */
+  /* ↓↓↓ 這一行控制【網通區】卡片寬度（越小卡片越小）*/
+  grid-auto-columns: min(56vw, 500px);
+  /* ↑↑↑ 需要再小就把 56vw 或 360px 調低；想大就調高 */
+
+  gap: 28px;          /* 網通區卡片之間的間距（可調） */
+  padding: 8px 24px;  /* 左右內邊界（可調） */
 }
 
-/* ▼ 修正：避免陰影連成一條橫線（僅網通區） */
 #network .card{
-  box-shadow: 0 12px 32px rgba(0,0,0,.08); /* 陰影變淺、模糊略小 */
-}
-#network .rail-wrap::after{
-  content:"";
-  position:absolute; left:0; right:0; bottom:0;
-  height: 24px;
-  background: linear-gradient(to bottom, rgba(245,245,247,0), var(--bg) 70%);
-  pointer-events:none;
-  z-index:3; /* 低於左右淡出(4)與箭頭(5)，但高於卡片 */
+  box-shadow: none;   /* 移除網通區卡片陰影，避免連成一條橫線 */
 }
 
-/* RWD 微調 */
+/* RWD 微調（僅網通區） */
 @media (max-width: 1024px){
-  #network .rail{ grid-auto-columns: min(72vw, 420px); gap: 24px; padding: 8px 20px 18px; }
+  #network .rail{ grid-auto-columns: min(64vw, 360px); gap: 24px; padding: 8px 20px; }
 }
 @media (max-width: 820px){
-  #network .rail{ grid-auto-columns: 76vw; gap: 20px; padding: 8px 16px 18px; }
+  #network .rail{ grid-auto-columns: 74vw; gap: 20px; padding: 8px 16px; }
 }
 @media (max-width: 560px){
-  #network .rail{ grid-auto-columns: 88vw; gap: 16px; padding: 8px 12px 16px; }
+  #network .rail{ grid-auto-columns: 88vw; gap: 16px; padding: 8px 12px; }
 }
 
 /* 聯絡 & 頁尾 */
