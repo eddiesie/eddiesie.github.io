@@ -58,7 +58,7 @@ a{color:inherit}
 .section h2{margin:0 0 8px; font-size:28px}
 .muted{color:var(--muted)}
 
-/* ====== 三等寬卡片（網路通訊能力區） ====== */
+/* ====== 三等寬卡片（原有，保留以備不時之需） ====== */
 .cards-3{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
@@ -81,20 +81,19 @@ a{color:inherit}
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  position: relative;                  /* 讓 figcaption 可以覆蓋 */
+  position: relative;
   text-decoration: none; color: inherit;
 }
 .card:hover{ transform: translateY(-2px); border-color:#d7d7dc; }
 
-/* 圖片比例：水平滑動區預設 3/4；三欄卡改 16/9（較像頁面截圖） */
+/* 預設：縱向 3/4；(你先前的方形設定只在 .cards-3 生效) */
 .card img{
   width:100%;
-  aspect-ratio: 3/4;             /* 作品滑動區預設比例 */
+  aspect-ratio: 3/4;
   object-fit: cover;
-  display:block;
   background:#fafafa;
 }
-.cards-3 .card img{ aspect-ratio: 1/1; } /* ✅ 只在網路通訊區改成 16:9 */
+.cards-3 .card img{ aspect-ratio: 1/1; }
 
 /* 文字覆蓋在圖片上（取消白邊） */
 .card figcaption{
@@ -108,35 +107,27 @@ a{color:inherit}
 .card p{margin:0; color:rgba(255,255,255,.9)}
 .card:focus-visible{ outline:2px solid var(--brand); outline-offset:2px }
 
-/* ===== 作品模塊 v2：滿版、無捲動條、邊緣箭頭、陰影 ===== */
-
-/* 讓模塊滿版（100vw），卡片可貼到視窗邊 */
+/* ===== 作品/網通 水平滑動（滿版） ===== */
 .section.fullbleed .rail-wrap{
   position: relative;
   width: 100vw;
   margin-left: 50%;
-  transform: translateX(-50%); /* 置中滿版區塊 */
+  transform: translateX(-50%);
 }
-
-/* 橫向軌道：橫排、貼邊；不留左右 padding 避免有「被裁切」感 */
 .rail{
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: min(78vw, 560px);
   gap: 0px;
-  padding: 8px 0;               /* 左右 0，貼齊視窗 */
+  padding: 8px 0;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-
-  /* 隱藏水平捲動條（Firefox/WebKit/舊 Edge） */
-  scrollbar-width: none;            /* Firefox */
-  -ms-overflow-style: none;         /* IE/Old Edge */
+  scrollbar-width: none; -ms-overflow-style: none;
 }
-.rail::-webkit-scrollbar{ width:0; height:0; display:none; } /* WebKit */
+.rail::-webkit-scrollbar{ width:0; height:0; display:none; }
 
-/* 左右箭頭（貼在視窗邊） */
 .rail-btn{
   position: absolute; top: 50%; transform: translateY(-50%);
   width: 44px; height: 44px; border-radius: 999px;
@@ -152,25 +143,22 @@ a{color:inherit}
 .rail-btn.next{ right: 8px; }
 .rail-btn.is-hidden{ opacity:.0; pointer-events:none; }
 
-/* 邊緣淡出遮罩（視覺收邊） */
 .edge-fade{
   position:absolute; top:0; bottom:0; width:60px; z-index:4;
   pointer-events:none;
 }
 .edge-fade.left{
-  left:0;
-  background: linear-gradient(90deg, var(--bg), rgba(245,245,247,0));
+  left:0; background: linear-gradient(90deg, var(--bg), rgba(245,245,247,0));
 }
 .edge-fade.right{
-  right:0;
-  background: linear-gradient(270deg, var(--bg), rgba(245,245,247,0));
+  right:0; background: linear-gradient(270deg, var(--bg), rgba(245,245,247,0));
 }
 
 /* 聯絡 & 頁尾 */
 .contact .muted a{color:var(--brand)}
 .site-footer{
   padding:36px 0; border-top:1px solid var(--line);
-  background:#fff0;  /* 保持透明感 */
+  background:#fff0;
 }
 .site-footer small{color:var(--muted)}
 

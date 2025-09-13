@@ -4,12 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
-  // 橫向滑動控制（作品一覽）
-  const rail = document.getElementById('rail');
-  const prevBtn = document.querySelector('.rail-btn.prev');
-  const nextBtn = document.querySelector('.rail-btn.next');
+  // 讓頁面上的每一個 rail-wrap 都有自己的左右鍵與拖曳捲動
+  document.querySelectorAll('.rail-wrap').forEach((wrap) => {
+    const rail = wrap.querySelector('.rail');
+    const prevBtn = wrap.querySelector('.rail-btn.prev');
+    const nextBtn = wrap.querySelector('.rail-btn.next');
+    if (!rail || !prevBtn || !nextBtn) return;
 
-  if (rail && prevBtn && nextBtn) {
     const step = () => Math.min(rail.clientWidth * 0.8, 600);
 
     // 點擊箭頭滑動
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
       rail.addEventListener(ev, () => { isDown = false; })
     );
 
-    // 垂直滾輪 → 轉成水平瀏覽；同時避免出現底部滑塊
+    // 垂直滾輪 → 轉成水平瀏覽
     rail.addEventListener('wheel', (e) => {
       if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) {
         rail.scrollBy({ left: e.deltaY });
@@ -56,5 +57,5 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', updateArrows);
     window.addEventListener('load', updateArrows);
     updateArrows();
-  }
+  });
 });
