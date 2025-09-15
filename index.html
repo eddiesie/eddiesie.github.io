@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Eddie — 一頁式作品集</title>
+  <title>Eddie-Portfolio</title>
   <meta name="description" content="前端 x 動漫美術，一頁式作品展示" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -71,11 +71,44 @@
     </div>
   </section>
 
+  <!-- ③ Cocos 拉霸機（影片 + 下方說明與按鈕） -->
+  <section id="slot" class="section fullbleed">
+    <div class="container section-head">
+      <h2>Cocos 拉霸機</h2>
+      <p class="muted">TypeScript、Cocos Creator、加權抽牌、逐輪停輪</p>
+    </div>
+
+    <!-- 滿視窗寬的長方形影片模塊 -->
+    <div class="slot-wrap">
+      <!-- iOS/Android 正常自動播放：muted + playsinline + autoplay + loop -->
+      <video
+        class="slot-media"
+        src="video/slotplay.mov"
+        muted
+        autoplay
+        loop
+        playsinline
+      >
+        你的瀏覽器不支援影片標籤。
+      </video>
+    </div>
+
+    <!-- 模塊下方：左側說明、右側連結按鈕 -->
+    <div class="container slot-meta">
+      <p class="slot-note">
+        自製五輪拉霸：逐格輪停節奏、自訂加權表機率、贏分播報、UI 自動更新（餘額 / 下注 / 贏分）。
+      </p>
+      <a class="btn slot-cta" href="https://eddiesie.github.io/slot-portfolio/" target="_blank" rel="noopener">
+        前往拉霸作品集
+      </a>
+    </div>
+  </section>
+
   <!-- ⑥ 作品一覽（水平滑動） -->
   <section id="gallery" class="section fullbleed">
     <div class="container section-head">
       <h2>作品一覽</h2>
-      <p class="muted">左右滑動以瀏覽。支援滑鼠、觸控、按鈕。</p>
+      <p class="muted">左右滑動以瀏覽。</p>
     </div>
 
     <div class="rail-wrap">

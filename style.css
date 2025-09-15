@@ -161,25 +161,42 @@ a{color:inherit}
 #network .rail{
   /* ↓↓↓ 這一行控制【網通區】卡片寬度（越小卡片越小）*/
   grid-auto-columns: min(56vw, 500px);
-  /* ↑↑↑ 需要再小就把 56vw 或 360px 調低；想大就調高 */
+  /* ↑↑↑ 想更小就把 56vw 或 500px 調低；想更大就調高 */
 
   gap: 28px;          /* 網通區卡片之間的間距（可調） */
   padding: 8px 24px;  /* 左右內邊界（可調） */
 }
-
 #network .card{
   box-shadow: none;   /* 移除網通區卡片陰影，避免連成一條橫線 */
 }
 
-/* RWD 微調（僅網通區） */
-@media (max-width: 1024px){
-  #network .rail{ grid-auto-columns: min(64vw, 360px); gap: 24px; padding: 8px 20px; }
+/* ===== 拉霸機展示（影片 + 下方 meta） ===== */
+.section.fullbleed .slot-wrap{
+  position: relative;
+  width: 100vw;            /* 滿視窗寬 */
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background:#000;
 }
-@media (max-width: 820px){
-  #network .rail{ grid-auto-columns: 74vw; gap: 20px; padding: 8px 16px; }
+.slot-media{
+  width: 100%;
+  aspect-ratio: 40/9;      /* 影片比例 */
+  object-fit: cover;       /* 視需要可改成 contain */
+  display:block;
+  background:#000;
 }
-@media (max-width: 560px){
-  #network .rail{ grid-auto-columns: 88vw; gap: 16px; padding: 8px 12px; }
+.slot-meta{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  margin-top:12px;
+}
+.slot-note{
+  color:var(--muted); max-width: 72ch;
+}
+@media (max-width: 640px){
+  .slot-meta{ flex-direction: column; align-items: flex-start; }
 }
 
 /* 聯絡 & 頁尾 */
