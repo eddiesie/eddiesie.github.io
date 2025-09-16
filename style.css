@@ -183,7 +183,7 @@ a{color:inherit}
 }
 .slot-media{
   width: 100%;
-  aspect-ratio: 40/9;      /* 影片比例 */
+  aspect-ratio: 40/9;      /* 影片比例（可調） */
   object-fit: cover;       /* 視需要可改成 contain */
   display:block;
   background:#000;
@@ -197,6 +197,21 @@ a{color:inherit}
 }
 @media (max-width: 640px){
   .slot-meta{ flex-direction: column; align-items: flex-start; }
+}
+
+/* ===== Unity 模塊（滿版 + 去黑邊） ===== */
+#unity .slot-wrap{
+  width: 100vw;            /* 明確指定 Unity 模塊也滿版 */
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.yt-media{
+  width:100%;
+  aspect-ratio:21/9;      /* 與拉霸機一致；若你的 redhood.mov 是 16:9，可改成 16/9 */
+  object-fit: cover;       /* ★關鍵：填滿裁切，避免左右黑邊 */
+  display:block;
+  border:0;
+  background:#000;
 }
 
 /* 聯絡 & 頁尾 */
