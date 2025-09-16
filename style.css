@@ -159,21 +159,16 @@ a{color:inherit}
 
 /* ===== 僅調整「網路通訊能力」尺寸與陰影 ===== */
 #network .rail{
-  /* ↓↓↓ 這一行控制【網通區】卡片寬度（越小卡片越小）*/
-  grid-auto-columns: min(56vw, 500px);
-  /* ↑↑↑ 想更小就把 56vw 或 500px 調低；想更大就調高 */
-
-  gap: 28px;          /* 網通區卡片之間的間距（可調） */
-  padding: 8px 24px;  /* 左右內邊界（可調） */
+  grid-auto-columns: min(56vw, 500px); /* ← 卡片寬度（要改大小調這裡或 500px） */
+  gap: 28px;
+  padding: 8px 24px;
 }
-#network .card{
-  box-shadow: none;   /* 移除網通區卡片陰影，避免連成一條橫線 */
-}
+#network .card{ box-shadow: none; }
 
 /* ===== 拉霸機展示（影片 + 下方 meta） ===== */
 .section.fullbleed .slot-wrap{
   position: relative;
-  width: 100vw;            /* 滿視窗寬 */
+  width: 100vw;  /* 滿視窗寬 */
   margin-left: 50%;
   transform: translateX(-50%);
   border-radius: var(--radius);
@@ -183,8 +178,8 @@ a{color:inherit}
 }
 .slot-media{
   width: 100%;
-  aspect-ratio: 40/9;      /* 影片比例（可調） */
-  object-fit: cover;       /* 視需要可改成 contain */
+  aspect-ratio: 40/9;
+  object-fit: cover;
   display:block;
   background:#000;
 }
@@ -192,26 +187,39 @@ a{color:inherit}
   display:flex; align-items:center; justify-content:space-between; gap:12px;
   margin-top:12px;
 }
-.slot-note{
-  color:var(--muted); max-width: 72ch;
-}
+.slot-note{ color:var(--muted); max-width: 72ch; }
 @media (max-width: 640px){
   .slot-meta{ flex-direction: column; align-items: flex-start; }
 }
 
 /* ===== Unity 模塊（滿版 + 去黑邊） ===== */
 #unity .slot-wrap{
-  width: 100vw;            /* 明確指定 Unity 模塊也滿版 */
+  width: 100vw;
   margin-left: 50%;
   transform: translateX(-50%);
 }
 .yt-media{
   width:100%;
-  aspect-ratio:21/9;      /* 與拉霸機一致；若你的 redhood.mov 是 16:9，可改成 16/9 */
-  object-fit: cover;       /* ★關鍵：填滿裁切，避免左右黑邊 */
+  aspect-ratio:21/9;   /* 若 redhood.mov 為 16:9，可改 16/9 */
+  object-fit: cover;   /* 填滿裁切，避免左右黑邊 */
   display:block;
   border:0;
   background:#000;
+}
+
+/* ===== 新增：4 圖 2×2 模塊 ===== */
+.grid-2x2{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:5px;
+}
+.grid-2x2 .card img{
+  aspect-ratio: 21/9;   /* 統一比例，維持整齊 */
+  object-fit: cover;
+  background:#fafafa;
+}
+@media (max-width: 820px){
+  .grid-2x2{ grid-template-columns: 1fr; }
 }
 
 /* 聯絡 & 頁尾 */
