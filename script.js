@@ -4,6 +4,50 @@ document.addEventListener('DOMContentLoaded', () => {
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
+  /* ===========================
+   *  平滑捲動（導覽錨點）
+   *  調整速度：SCROLL_DURATION（毫秒，越大越慢）
+   * =========================== */
+  const SCROLL_DURATION = 700; // ←★ 調速：預設 700ms，可改成 400/1000 等
+
+  // 緩動函式（easeInOutCubic）
+  const easeInOutCubic = t => (t < 0.5)
+    ? 4 * t * t * t
+    : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+  function smoothScrollTo(targetY, duration){
+    const startY = window.scrollY || window.pageYOffset;
+    const diff = targetY - startY;
+    let start;
+    function step(ts){
+      if (!start) start = ts;
+      const elapsed = ts - start;
+      const t = Math.min(1, elapsed / duration);
+      const eased = easeInOutCubic(t);
+      window.scrollTo(0, Math.round(startY + diff * eased));
+      if (elapsed < duration) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const header = document.querySelector('.site-header');
+
+  // 讓所有 href 以 # 開頭且對應到頁面元素的連結，都用平滑捲動
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    const hash = a.getAttribute('href');
+    if (!hash || hash === '#') return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const headerH = header ? header.getBoundingClientRect().height : 0;
+      const y = target.getBoundingClientRect().top + window.scrollY - headerH - 8; // -8px 小緩衝
+      smoothScrollTo(Math.max(0, y), SCROLL_DURATION); // ←★ 速度由上方變數控制
+      history.pushState(null, '', hash); // 更新網址（不觸發原生跳轉）
+    });
+  });
+
   // 讓頁面上每一個 .rail-wrap 都有自己的左右鍵與拖曳捲動
   document.querySelectorAll('.rail-wrap').forEach((wrap) => {
     const rail = wrap.querySelector('.rail');
